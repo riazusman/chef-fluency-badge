@@ -4,8 +4,15 @@
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
-package 'apche' do
-	package_name 'httpd'
+
+if node ['platform_family'] == "rhel"
+	package = "httpd"
+elseif node ['platform_family'] == 'debian'
+	package = "apache2"
+end
+
+package 'apche2' do
+	package_name package
 	action 'install'
 end
 
@@ -13,3 +20,5 @@ service 'apache2' do
 	service_name 'httpd'
 	action [:start, :enable]
 end
+
+
