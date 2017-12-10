@@ -12,7 +12,7 @@
 #end
 
 package 'apche2' do
-	package_name package
+	package_name 'httpd'
 	action 'install'
 end
 
